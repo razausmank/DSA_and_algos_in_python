@@ -1,41 +1,18 @@
-import math
 
-x = 4 
-my_array = [ 1,2,3,4,5,6,7,8,9,10 ]
 
-my_array_length = len(my_array)  
-low = 0 
-high = my_array_length - 1 
-found = False 
+def binary_search_iterative(arr, target):
+    left, right = 0, len(arr) - 1
 
-while low != high : 
-    
-    if len(my_array[low:high]) % 2 == 0 : 
-        mid_index = int(len(my_array[low:high]) / 2 ) - 1  
-        mid_elem  = my_array[mid_index] + my_array[mid_index + 1]
-    else: 
-        mid_index = math.floor(len(my_array[low:high]) / 2 )
-        mid_elem = my_array[mid_index] 
-        
-    print("iteration")
-    if x == mid_elem : 
-        found = True 
-        break  
-    elif x > mid_elem : 
-        low = mid_index
-    else : 
-        high = mid_index    
+    while left <= right:
+        mid = (left + right) // 2
 
-print("found it" if found else "not found" )
-        
-        
-        
-        
-        
-# run the loop until low ==
-        
-        
-    
-    
-    
-    
+        if arr[mid] == target:
+            return mid  # Target found
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return -1  # Target not found
+
+print(binary_search_iterative( my_array, 4)) 
